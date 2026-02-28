@@ -81,13 +81,13 @@ class CarbonCycling:
             soil_mass = (
                 self._determine_soil_mass(layer.bulk_density, soil_volume) * GeneralConstants.MEGAGRAMS_TO_KILOGRAMS
             )
-            soil_active_carbon_fraction = self._determine_soil_active_carbon_fraction(
+            soil_active_carbon_fraction = self._determine_soil_carbon_fraction(
                 layer.active_carbon_amount, soil_mass, field_size
             )
-            soil_slow_carbon_fraction = self._determine_soil_slow_carbon_fraction(
+            soil_slow_carbon_fraction = self._determine_soil_carbon_fraction(
                 layer.slow_carbon_amount, soil_mass, field_size
             )
-            soil_passive_carbon_fraction = self._determine_soil_passive_carbon_fraction(
+            soil_passive_carbon_fraction = self._determine_soil_carbon_fraction(
                 layer.passive_carbon_amount, soil_mass, field_size
             )
             layer.soil_overall_carbon_fraction = self._determine_soil_overall_carbon_fraction(
@@ -164,88 +164,30 @@ class CarbonCycling:
         return bulk_density * soil_volume
 
     @staticmethod
-    def _determine_soil_active_carbon_fraction(
-        active_carbon_amount: float, soil_mass: float, field_size: float
-    ) -> float:
+    def _determine_soil_carbon_fraction(carbon_amount: float, soil_mass: float, field_size: float) -> float:
         """
-        This method calculates the fraction of active carbon in the soil.
+        This method calculates the fraction of carbon in the soil.
 
         Parameters
         ----------
         active_carbon_amount: float
-            active carbon stored in the soil (kg/ha)
+            Active carbon stored in the soil (kg / ha).
         soil_mass: float
-            mass of soil (kg)
+            Mass of soil (kg).
         field_size: float
-            size of the field (ha)
+            Size of the field (ha).
 
         Returns
         -------
         float
-            fraction of active carbon in the soil (unitless)
+            Fraction of active carbon in the soil (unitless).
 
         References
-        -------
-        pseudoode_soil S.6.D.2
-
-        """
-        return active_carbon_amount * field_size / soil_mass
-
-    @staticmethod
-    def _determine_soil_slow_carbon_fraction(slow_carbon_amount: float, soil_mass: float, field_size: float) -> float:
-        """
-        This method calculates the fraction of slow carbon in the soil.
-
-        Parameters
         ----------
-        slow_carbon_amount: float
-            slow carbon stored in the soil (kg/ha)
-        soil_mass: float
-            mass of soil (kg)
-        field_size: float
-            size of the field (ha)
-
-        Returns
-        -------
-        float
-            fraction of slow carbon in the soil (unitless)
-
-        References
-        -------
-        pseudoode_soil S.6.D.2
+        Scientific Documentation [SC.CAR.1]
 
         """
-        return slow_carbon_amount * field_size / soil_mass
-
-    @staticmethod
-    def _determine_soil_passive_carbon_fraction(
-        passive_carbon_amount: float, soil_mass: float, field_size: float
-    ) -> float:
-        """
-        This method calculates the fraction of passive carbon in the soil.
-
-        Parameters
-        ----------
-        passive_carbon_amount: float
-            passive carbon stored in the soil (kg/ha)
-        soil_mass: float
-            mass of soil (kg)
-        field_size: float
-            size of the field (ha)
-
-        Returns
-        -------
-        float
-            fraction of passive carbon in the soil (unitless)
-
-        References
-        -------
-        pseudoode_soil S.6.D.2
-
-        """
-        if passive_carbon_amount is None:
-            return 0
-        return passive_carbon_amount * field_size / soil_mass
+        return carbon_amount * field_size / soil_mass
 
     @staticmethod
     def _determine_soil_overall_carbon_fraction(
