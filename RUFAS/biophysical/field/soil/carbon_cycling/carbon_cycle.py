@@ -211,8 +211,8 @@ class CarbonCycling:
             the total fraction of carbon in the soil by mass(unitless)
 
         References
-        -------
-        pseudoode_soil S.6.D.3
+        ----------
+        Scientific Documentation [SC.CAR.2]
 
         """
         return soil_active_carbon_fraction + soil_passive_carbon_fraction + soil_slow_carbon_fraction
@@ -239,8 +239,8 @@ class CarbonCycling:
             the total amount of soil carbon (kg/ha)
 
         References
-        -------
-        pseudoode_soil S.6.D.4
+        ----------
+                Scientific Documentation [SC.CAR.3]
 
         """
         return active_carbon_amount + slow_carbon_amount + passive_carbon_amount
@@ -269,8 +269,8 @@ class CarbonCycling:
             total amount plant carbon lost as CO2 (kg/ha)
 
         References
-        -------
-        pseudoode_soil S.6.D.5
+        ----------
+        Scientific Documentation [SC.CAR.47]
 
         """
         return (
@@ -301,8 +301,8 @@ class CarbonCycling:
             total amount soil carbon lost as CO2 (kg/ha)
 
         References
-        -------
-        pseudoode_soil S.6.D.5
+        ----------
+        Scientific Documentation [SC.CAR.47]
 
         """
         return soil_metabolic_active_carbon_loss + soil_structural_active_carbon_loss + soil_structural_slow_carbon_loss
@@ -329,8 +329,8 @@ class CarbonCycling:
             amount of total carbon lost as CO2 during decomposition(kg/ha)
 
         References
-        -------
-        pseudoode_soil S.6.D.6
+        ----------
+        Scientific Documentation [SC.CAR.15]
 
         """
         return active_carbon_to_slow_loss + slow_carbon_co2_lost_amount + passive_carbon_co2_lost_amount
@@ -359,7 +359,7 @@ class CarbonCycling:
 
         References
         -------
-        pseudocode_soil S.6.D.7
+        Scientific Documentation [SC.CAR.43]
 
         """
         return total_decomposition_carbon_CO2_lost + total_plant_carbon_CO2_loss + total_soil_carbon_CO2_loss
