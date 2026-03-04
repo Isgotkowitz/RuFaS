@@ -170,8 +170,8 @@ class CarbonCycling:
 
         Parameters
         ----------
-        active_carbon_amount: float
-            Active carbon stored in the soil (kg / ha).
+        carbon_amount: float
+            Carbon stored in the soil (kg / ha).
         soil_mass: float
             Mass of soil (kg).
         field_size: float
