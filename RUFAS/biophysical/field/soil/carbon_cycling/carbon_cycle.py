@@ -100,12 +100,12 @@ class CarbonCycling:
                 layer.slow_carbon_amount,
                 layer.passive_carbon_amount,
             )
-            total_plant_carbon_CO2_loss = self._determine_total_plant_carbon_CO2_loss(
+            total_plant_carbon_CO2_loss = self._determine_total_carbon_CO2_loss(
                 layer.plant_metabolic_active_carbon_loss,
                 layer.plant_structural_active_carbon_loss,
                 layer.plant_structural_slow_carbon_loss,
             )
-            total_soil_carbon_CO2_loss = self._determine_total_soil_carbon_CO2_loss(
+            total_soil_carbon_CO2_loss = self._determine_total_carbon_CO2_loss(
                 layer.soil_metabolic_active_carbon_loss,
                 layer.soil_structural_active_carbon_loss,
                 layer.soil_structural_slow_carbon_loss,
@@ -171,7 +171,7 @@ class CarbonCycling:
         Parameters
         ----------
         carbon_amount: float
-            Carbon stored in the soil (kg / ha).
+            Carbon stored in the soil (kg/ha).
         soil_mass: float
             Mass of soil (kg).
         field_size: float
@@ -246,66 +246,35 @@ class CarbonCycling:
         return active_carbon_amount + slow_carbon_amount + passive_carbon_amount
 
     @staticmethod
-    def _determine_total_plant_carbon_CO2_loss(
-        plant_metabolic_active_carbon_loss: float,
-        plant_structural_active_carbon_loss: float,
-        plant_structural_slow_carbon_loss: float,
+    def _determine_total_carbon_CO2_loss(
+        metabolic_active_carbon_loss: float,
+        structural_active_carbon_loss: float,
+        structural_slow_carbon_loss: float,
     ) -> float:
         """
-        This method calculates the total amount plant carbon lost as CO2.
+        Calculates the total amount carbon lost as CO2 for plant and soil (i.e. above ground and below
+        ground) pools.
 
         Parameters
         ----------
-        plant_metabolic_active_carbon_loss: float
-            plant metabolic carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha)
-        plant_structural_active_carbon_loss: float
-            plant structural carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha)
-        plant_structural_slow_carbon_loss: float
-            plant structural carbon being lost as carbon dioxide during decomposition into slow carbon (kg/ha)
+        metabolic_active_carbon_loss: float
+            Metabolic carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha).
+        structural_active_carbon_loss: float
+            Structural carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha).
+        structural_slow_carbon_loss: float
+            Structural carbon being lost as carbon dioxide during decomposition into slow carbon (kg/ha).
 
         Returns
         -------
         float
-            total amount plant carbon lost as CO2 (kg/ha)
+            Total amount of carbon lost as CO2 (kg/ha).
 
         References
         ----------
         Scientific Documentation [SC.CAR.47]
 
         """
-        return (
-            plant_metabolic_active_carbon_loss + plant_structural_active_carbon_loss + plant_structural_slow_carbon_loss
-        )
-
-    @staticmethod
-    def _determine_total_soil_carbon_CO2_loss(
-        soil_metabolic_active_carbon_loss: float,
-        soil_structural_active_carbon_loss: float,
-        soil_structural_slow_carbon_loss: float,
-    ) -> float:
-        """
-        This method calculates the total amount soil carbon lost as CO2.
-
-        Parameters
-        ----------
-        soil_metabolic_active_carbon_loss: float
-            soil metabolic carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha)
-        soil_structural_active_carbon_loss: float
-            soil structural carbon being lost as carbon dioxide during decomposition into active carbon (kg/ha)
-        soil_structural_slow_carbon_loss: float
-            soil structural carbon being lost as carbon dioxide during decomposition into slow carbon (kg/ha)
-
-        Returns
-        -------
-        float
-            total amount soil carbon lost as CO2 (kg/ha)
-
-        References
-        ----------
-        Scientific Documentation [SC.CAR.47]
-
-        """
-        return soil_metabolic_active_carbon_loss + soil_structural_active_carbon_loss + soil_structural_slow_carbon_loss
+        return metabolic_active_carbon_loss + structural_active_carbon_loss + structural_slow_carbon_loss
 
     @staticmethod
     def _determine_total_decomposition_carbon_CO2_lost(
@@ -360,7 +329,7 @@ class CarbonCycling:
 
         References
         ----------
-        Scientific Documentation [SC.CAR.43]
+        TODO: find reference eqn
 
         """
         return total_decomposition_carbon_CO2_lost + total_plant_carbon_CO2_loss + total_soil_carbon_CO2_loss
