@@ -240,7 +240,7 @@ class CarbonCycling:
 
         References
         ----------
-                Scientific Documentation [SC.CAR.3]
+        Scientific Documentation [SC.CAR.3]
 
         """
         return active_carbon_amount + slow_carbon_amount + passive_carbon_amount
@@ -352,13 +352,14 @@ class CarbonCycling:
             total amount soil carbon lost as CO2 (kg/ha)
         total_decomposition_carbon_CO2_lost: float
             amount of total carbon lost as CO2 during decomposition(kg/ha)
+
         Returns
         -------
         float
             total amount of carbon lost as CO2 (kg/ha)
 
         References
-        -------
+        ----------
         Scientific Documentation [SC.CAR.43]
 
         """
