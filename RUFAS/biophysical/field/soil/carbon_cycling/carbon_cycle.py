@@ -316,20 +316,16 @@ class CarbonCycling:
         Parameters
         ----------
         total_plant_carbon_CO2_loss: float
-            total amount plant carbon lost as CO2 (kg/ha)
+            Total amount plant carbon lost as CO2 (kg/ha).
         total_soil_carbon_CO2_loss: float
-            total amount soil carbon lost as CO2 (kg/ha)
+            Total amount soil carbon lost as CO2 (kg/ha).
         total_decomposition_carbon_CO2_lost: float
-            amount of total carbon lost as CO2 during decomposition(kg/ha)
+            Amount of total carbon lost as CO2 during decomposition (kg/ha).
 
         Returns
         -------
         float
-            total amount of carbon lost as CO2 (kg/ha)
-
-        References
-        ----------
-        TODO: find reference eqn
+            Total amount of carbon lost as CO2 (kg/ha).
 
         """
         return total_decomposition_carbon_CO2_lost + total_plant_carbon_CO2_loss + total_soil_carbon_CO2_loss
